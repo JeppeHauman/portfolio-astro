@@ -1,0 +1,59 @@
+---
+import type { ImageMetadata } from "astro";
+import { projects } from "../../projects";
+import { Image } from "astro:assets";
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/images/*.{jpeg,jpg,png,gif}"
+);
+const logos = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/images/logos/*.{jpeg,jpg,png,svg}"
+);
+---
+
+<div
+  class="text-gray-300 mx-auto grid place-content-center content-center gap-10 p-4 lg:max-w-5xl lg:grid-cols-2 lg:gap-10 lg:p-10 bg-black bg-opacity-20 backdrop-blur-sm rounded-t-2xl"
+>
+  {
+    projects.map((project, i) => (
+      <div class="flex flex-col justify-between">
+        <div class="mb-1 pl-1">
+          <a href={project.url} target="_blank">
+            <h3 class="my-2 text-xl underline lg:text-2xl lg:no-underline">
+              {project.title}
+            </h3>
+          </a>
+          <p class="mt-2">{project.description}</p>
+        </div>
+        <div>
+          <div class="relative overflow-hidden rounded-md">
+            <a
+              target="_blank"
+              href={project.url}
+              class="group rounded-md after:rounded-lg after:opacity-0 hover:after:absolute hover:after:right-1/2 hover:after:top-1/2 hover:after:block hover:after:-translate-y-1/2 hover:after:translate-x-1/2 hover:after:border-2 hover:after:text-black hover:after:bg-gray-200 hover:after:px-3 hover:after:py-1 hover:after:opacity-100 hover:after:transition-opacity hover:after:duration-1000 hover:after:ease-in-out hover:after:content-['Visit']"
+            >
+              <Image
+                class="rounded-md object-cover transition-all duration-300 ease-in-out group-hover:scale-110 group-hover:opacity-80 lg:h-64"
+                src={images[project.img]()}
+                alt={`Screenshot of ${project.title}s website`}
+              />
+            </a>
+          </div>
+          <div class="mt-1 flex items-center gap-2 pl-1">
+            Tech used:
+            {project.tech!.map((tech, i) =>
+              tech === "NewscatcherAPI" ? (
+                <span>NewscatcherAPI</span>
+              ) : (
+                <Image
+                  class="max-h-4"
+                  src={logos[`/src/images/logos/${tech.toLowerCase()}.svg`]()}
+                  alt={tech}
+                />
+              )
+            )}
+          </div>
+        </div>
+      </div>
+    ))
+  }
+</div>
