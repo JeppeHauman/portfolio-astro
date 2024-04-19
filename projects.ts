@@ -1,5 +1,13 @@
 export const projects = [
   {
+    title: "Streams On",
+    description:
+      "Web app where a user can look up movies and tv-shows and see where it streams in a specific country.",
+    img: "/src/images/streams-on.png",
+    tech: ["Astro", "Themoviedb"],
+    url: "https://streams-on.vercel.app/",
+  },
+  {
     title: "MasterChef Event",
     description:
       "Website for a new subcompany of MasterChef doing events at their studios. Built from the ground up using Sveltekit and Sanity CMS.",

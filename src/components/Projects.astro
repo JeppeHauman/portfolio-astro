@@ -45,7 +45,8 @@ const logos = import.meta.glob<{ default: ImageMetadata }>(
                 <span>NewscatcherAPI</span>
               ) : (
                 <Image
-                  class="max-h-4"
+                  title={tech}
+                  class="max-h-4 max-w-32"
                   src={logos[`/src/images/logos/${tech.toLowerCase()}.svg`]()}
                   alt={tech}
                 />
