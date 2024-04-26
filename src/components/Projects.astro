@@ -46,7 +46,7 @@ const logos = import.meta.glob<{ default: ImageMetadata }>(
               ) : (
                 <Image
                   title={tech}
-                  class="max-h-4 max-w-32"
+                  class="max-h-4 max-w-32 text-slate-950"
                   src={logos[`/src/images/logos/${tech.toLowerCase()}.svg`]()}
                   alt={tech}
                 />
